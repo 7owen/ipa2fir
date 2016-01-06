@@ -7,10 +7,11 @@ ApiToken="you api token"
 Type="ios"
 ReleaseType="Adhoc" #Inhouse
 ChangeLog="$2"
+AppName="app name"
 
 Date=`date +%Y%m%d%H%M`
 unzipPlist="/tmp/Info_$Date.plist"
-unzip -p $IPAFile "Payload/Comikon.app/Info.plist" > $unzipPlist
+unzip -p $IPAFile "Payload/$AppName.app/Info.plist" > $unzipPlist
 BundleId=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" $unzipPlist)
 AppName=$(/usr/libexec/PlistBuddy -c "Print :CFBundleName" $unzipPlist)
 AppVersion=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" $unzipPlist)
