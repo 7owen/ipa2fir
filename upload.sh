@@ -20,6 +20,10 @@ rm -rf $unzipPlist
 
 eval $(curl -X POST -H "Content-Type: application/json" -d "{\"type\":\"$Type\", \"bundle_id\":\"$BundleId\", \"api_token\":\"$ApiToken\"}" http://api.fir.im/apps  2>/dev/null | ./JSON.sh -b | awk '{gsub(/[\]["]/, "", $1); gsub(",", "_", $1); print $1 "=" $2; }')
 
+#upload icon
+# use $cert_icon_key $cert_icon_token $cert_icon_upload_url
+# icon in xxx.ipa
+
 curl -F "key=$cert_binary_key" -F "token=$cert_binary_token" \
     -F "file=@$IPAFile" -F "x:name=$AppName" -F "x:version=$AppVersion" \
     -F "x:build=$AppBuild" -F "x:release_type=$ReleaseType" -F "x:changelog=$ChangeLog" \
